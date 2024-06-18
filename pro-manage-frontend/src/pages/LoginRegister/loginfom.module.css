@@ -1,0 +1,68 @@
+.inputContainer {
+    position: relative;
+    width: 70%;
+   
+    display: inline-block;
+  }
+  
+  .inputContainer img {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+  }
+  
+  .inputContainer input {
+    width: 100%;
+    padding: 10px 10px 10px 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  .inputContainer input:focus {
+    border-color: #007bff;
+  }
+
+  .container{
+    text-align: center;
+  }
+  .container h2{
+    font-family: sans-serif;
+    font-weight: 600;
+    color: #343434;
+    margin-top: 30%;
+    
+  }
+  .currentFunctionButton{
+    width: 100%;
+    background-color: #17A2B8;
+    border: none;
+    height: 40px;
+    border-radius: 53px;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  
+  .otherFunctionButton{
+    width: 100%;
+    background-color: #ffff;
+ 
+    height: 40px;
+    border-radius: 53px;
+    color: #17A2B8;
+    font-family: sans-serif;
+    font-weight: 400;
+    border: solid 1px #17A2B8 ;
+    cursor: pointer;
+  }
+
+  .noAccountLabel{
+    font-family: sans-serif;
+    font-weight: 400;
+    color: #828282;
+  }
