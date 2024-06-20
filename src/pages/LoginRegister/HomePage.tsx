@@ -1,6 +1,6 @@
-import React from 'react'
+
 import { registerArt } from '../../assets'
-import { JSX } from 'react/jsx-runtime'
+
 import styles from "./homePage.module.css"
 const HomePage = ({ mode }: any) => {
   return (

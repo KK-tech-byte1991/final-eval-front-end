@@ -4,7 +4,7 @@ import { emailIcon, lockIcon, personIcon } from '../../assets';
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import axios from "axios";
-import { Toaster, toast } from "sonner";
+import {  toast } from "sonner";
 const RegisterForm = () => {
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
