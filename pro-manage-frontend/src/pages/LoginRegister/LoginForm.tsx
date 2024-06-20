@@ -12,7 +12,7 @@ const LoginForm = () => {
     console.log("email,password", email, password)
     let payload = { email, password }
     if (email.length > 0 && password.length > 0) {
-      axios.post("http://localhost:3000/users/login", payload)
+      axios.post(import.meta.env.VITE_BASE_URL+"/users/login", payload)
     }
   }
   return (
