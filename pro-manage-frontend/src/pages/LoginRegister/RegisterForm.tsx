@@ -4,31 +4,42 @@ import { emailIcon, lockIcon, personIcon } from '../../assets';
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import axios from "axios";
+import { Toaster, toast } from "sonner";
 const RegisterForm = () => {
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [email, setEmail] = useState("")
-    const [passwordError, setPasswordError] = useState("Confirm password doesn'tmatch with the password.")
+    const [passwordError, setPasswordError] = useState("")
 
     const navigate = useNavigate();
 
     const handleRegister = () => {
         const payload = { name, password, email }
         if (password == confirmPassword) {
-            axios.post("http://localhost:3000/" + "users/create", payload).then(() => alert("User Added Successfully!"))
+            axios.post("http://localhost:3000/" + "users/create", payload)
+                .then(() => {
+                    setName("")
+                    setPassword("")
+                    setConfirmPassword("")
+                    setEmail("")
+                    setPasswordError("")
+                    toast.success("User Added Successfully!")
+                })
+                .catch((err) => toast.error(err.response.data))
         } else {
             setPasswordError("Confirm password doesn't match with the password.")
         }
-        // fetch("http://localhost:3000/"+"users/create",{method:"post",body:JSON.stringify(payload)}).then(()=>alert("User Added Successfully!"))
     }
     return (
         <div className={styles.container}>
+
             <h2>Register</h2>
             <br />
             <div className={styles.inputContainer}>
                 <img src={personIcon} alt="person" />
                 <input
+                    value={name}
                     type="text"
                     placeholder="Name"
                     onChange={(e) => setName(e.target.value)} />
@@ -36,7 +47,9 @@ const RegisterForm = () => {
             <br /><br />
             <div className={styles.inputContainer}>
                 <img src={emailIcon} alt="email" />
-                <input type="email" placeholder="Email"
+                <input
+                    value={email}
+                    type="email" placeholder="Email"
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
@@ -46,11 +59,12 @@ const RegisterForm = () => {
 
                 <img src={lockIcon} alt="lock" />
                 <input
+                    value={confirmPassword}
                     type='password'
                     placeholder="Confirm Password"
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-               
+
 
             </div>
             <p className={styles.errorInput}>{passwordError}</p>
@@ -59,6 +73,7 @@ const RegisterForm = () => {
 
                 <img src={lockIcon} alt="lock" />
                 <input
+                    value={password}
                     type='password'
                     placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)}
