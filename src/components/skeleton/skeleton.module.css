@@ -1,0 +1,47 @@
+/* src/components/Skeleton.css */
+
+@keyframes shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: 200px 0;
+    }
+  }
+  
+  .skeletonWrapper {
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .skeletonElement {
+    background: #f6f7f8;
+    background-image: linear-gradient(90deg, #f6f7f8 25%, #edeef1 50%, #f6f7f8 75%);
+    background-size: 200px 100%;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .title {
+    height: 20px;
+    width: 60%;
+  }
+  
+  .text {
+    height: 16px;
+    width: 80%;
+  }
+
+  .block{
+    height: 80vh;
+    width: 100%;
+
+  }
+  
+  .avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  

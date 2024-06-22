@@ -1,6 +1,6 @@
 
 import ReactDOM from 'react-dom/client'
-
+import React from 'react';
 import { router } from "./router.tsx"
 import './index.css'
 import {
@@ -8,7 +8,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Toaster } from 'sonner';
-import React from 'react';
+;
 
 
 

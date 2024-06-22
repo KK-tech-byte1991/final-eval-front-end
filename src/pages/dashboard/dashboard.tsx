@@ -1,9 +1,9 @@
 
-
-const dashboard = () => {
+// import styles from "./dashboard.module.css"
+const Dashboard = () => {
   return (
-    <div>dashboard</div>
+   <h1>Hi Iam Dashboard</h1>
   )
 }
 
-export default dashboard
+export default Dashboard

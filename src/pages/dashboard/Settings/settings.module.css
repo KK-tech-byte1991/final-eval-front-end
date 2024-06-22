@@ -1,0 +1,46 @@
+.heading {
+    color: #000;
+    font-family: "Open Sans", sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.inputContainer {
+    position: relative;
+    width: 70%;
+  
+    display: inline-block;
+  }
+  
+  .inputContainer img {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+  }
+  
+  .inputContainer input {
+    width: 100%;
+    padding: 10px 10px 10px 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  .inputContainer input:focus {
+    border-color: #007bff;
+  }
+  .currentFunctionButton {
+    width: 100%;
+    background-color: #17A2B8;
+    border: none;
+    height: 40px;
+    border-radius: 53px;
+    color: white;
+    font-family: "Open Sans",sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+  }

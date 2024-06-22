@@ -4,11 +4,12 @@ import {
 
 import Login from "./pages/LoginRegister/Login";
 import Register from "./pages/LoginRegister/Register";
-import Dashboard from "./pages/dashboard/dashboard";
+import { AnalyticsLayout, DashboardLayout, SettingsLayout } from "./pages/dashboard/layout";
+import Home from "./pages/home";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <h1 >Welcome</h1>,
+    element: <Home />,
   },
   {
     path: "/login",
@@ -19,7 +20,15 @@ export const router = createBrowserRouter([
     element: <Register />,
   },
   {
-    path:"/dashboard",
-    element:<Dashboard/>
+    path: "/dashboard",
+    element: <DashboardLayout />
+  }
+  , {
+    path: "/settings",
+    element: <SettingsLayout />
+  },
+  {
+    path: "/analytics",
+    element: <AnalyticsLayout />
   }
 ]);
