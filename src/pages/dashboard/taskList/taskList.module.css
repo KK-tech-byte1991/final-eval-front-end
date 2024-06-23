@@ -1,0 +1,81 @@
+.taskBody {
+    border-radius: 20px;
+    background: #FFF;
+    min-height: 175px;
+    position: relative;
+}
+
+.topDiv {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.priorityDiv {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.priorityLabel {
+    color: #707070;
+    font-family: Poppins;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.initialsDiv {
+    background-color: #FFEBEB;
+    height: 15px;
+    width: 15px;
+    border-radius: 15px;
+    font-family: Poppins, sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heroSection {
+    color: #000;
+    font-family: Poppins, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    /* line-height: 2px; */
+    padding-left: 20px;
+}
+
+.footer {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    bottom: 25px;
+    /* padding-left: 20px; */
+    width: 100%;
+
+}
+
+.taskStatusButton {
+    border: none;
+    display: flex;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background-color: #EEECEC;
+    color: #767575;
+    font-family: Poppins, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+}

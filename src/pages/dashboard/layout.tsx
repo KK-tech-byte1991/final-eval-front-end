@@ -19,7 +19,7 @@ const Layout = ({ child }: any) => {
     return (
         sessionStorage.getItem("userDetails") ? <div className={styles.container}>
             {sessionStorage.getItem("userDetails") && <Sidebar />}
-            {sessionStorage.getItem("userDetails") && <div>{child}</div>}
+            {sessionStorage.getItem("userDetails") && <div className={styles.mainContent}>{child}</div>}
             {!sessionStorage.getItem("userDetails") && <div></div>}
             {!sessionStorage.getItem("userDetails") && <Loader />}
         </div> : <Loader />

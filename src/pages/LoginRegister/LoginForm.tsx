@@ -6,12 +6,12 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 const LoginForm = () => {
-  
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate();
-  const handleLogin = () => {
-
+  const handleLogin = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
     let payload = { email, password }
     if (email.length > 0 && password.length > 0) {
       axios.post(import.meta.env.VITE_BASE_URL + "/users/login", payload)
@@ -29,41 +29,44 @@ const LoginForm = () => {
   }
   return (
     <div className={styles.container}>
-      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <h2>Login</h2>
 
-      <div className={styles.inputContainer}>
+        <div className={styles.inputContainer}>
 
-        <img src={emailIcon} alt="email" />
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email} />
-      </div>
-      <br /><br />
-      <div className={styles.inputContainer}>
+          <img src={emailIcon} alt="email" />
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email} />
+        </div>
+        <br /><br />
+        <div className={styles.inputContainer}>
 
-        <img src={lockIcon} alt="lock" />
-        <input
+          <img src={lockIcon} alt="lock" />
+          <input
 
-          type='password'
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
+            type='password'
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
 
-      </div>
-      <br /><br /><br />
-      <div className={styles.inputContainer}>
-        <button
-          className={styles.currentFunctionButton}
-          onClick={handleLogin} >Log In</button >
-      </div>
-      <br />
-      <p className={styles.noAccountLabel}>Have no account yet?</p>
-      <div className={styles.inputContainer}>
-        <button className={styles.otherFunctionButton} onClick={() => navigate("/register")}>Register</button >
-      </div>
+        </div>
+        <br /><br /><br />
+        <div className={styles.inputContainer}>
+          <button
+            type="submit"
+            className={styles.currentFunctionButton}
+          >Log In</button >
+        </div>
+        <br />
+        <p className={styles.noAccountLabel}>Have no account yet?</p>
+        <div className={styles.inputContainer}>
+          <button className={styles.otherFunctionButton} onClick={() => navigate("/register")}>Register</button >
+        </div>
+      </form>
     </div>
   )
 }

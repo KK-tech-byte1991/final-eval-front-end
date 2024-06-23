@@ -1,9 +1,10 @@
 .sidebarContainer {
-    border-right: 2px solid #EDF5FE;
+    border-right: 4px solid #EDF5FE;
     height: 100%;
     width: 100%;
-    background: #FFF;
+    /* background: #cac8c8; */
     position: relative;
+
 }
 
 .labelDiv {
@@ -36,13 +37,10 @@
     height: 70px;
     display: grid;
     grid-template-columns: 30% 70%;
-
     color: #000;
-
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
-
     font-family: Poppins, sans-serif;
 }
 

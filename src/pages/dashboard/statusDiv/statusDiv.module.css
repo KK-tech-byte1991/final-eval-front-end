@@ -1,0 +1,34 @@
+.container {
+    height: 100%;
+    background-color: #EEF2F5;
+    border-radius: 10px;
+    width: 23%;
+}
+
+.headingDiv {
+    color: #000;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 15px;
+}
+
+.headerButton {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.body {
+    padding-left: 25px;
+    overflow-y: scroll;
+    padding-right: 5px;
+    display: grid;
+    gap: 16px;
+    height: 90%;
+}

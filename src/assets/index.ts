@@ -7,9 +7,15 @@ import codesandbox from "./codesandbox.svg"
 import layout from "./layout.svg"
 import settings from "./settings.svg"
 import logout from "./Logout.svg"
+import addPeople from "./addpeople.svg"
+import collapse from "./codicon_collapse-all.svg"
+import plus from "./plus.svg"
+import threeDots from "./threedots.svg"
+import ellipsesHigh from "./ellipseHigh.svg"
 
 export {
     registerArt, emailIcon, lockIcon,
     personIcon, database,
-    codesandbox, layout, settings, logout
+    codesandbox, layout, settings, logout,
+    addPeople, plus, collapse,threeDots,ellipsesHigh
 }

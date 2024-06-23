@@ -4,14 +4,18 @@
     width: 100%;
     height: calc(100vh - 1px);
     overflow: hide;
-    
+    /* background-color: grey; */
+}
+
+.mainContent {
+    position: relative;
+    padding-left: 20px;
 }
 
 .dashboardNameHeading {
     color: #000;
-    /* leading-trim: both;
-    text-edge: cap; */
-    font-family: Poppins;
+
+    font-family: Poppins, sans-serif;
     font-size: 22px;
     font-style: normal;
     font-weight: 600;
@@ -20,9 +24,58 @@
 
 .heading {
     color: #000;
-    font-family: Poppins;
+    font-family: Poppins, sans-serif;
     font-size: 29px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+}
+
+.addPeople {
+    color: #707070;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    background-color: white;
+
+}
+
+.addPeople>button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.boardContent {
+    /* background-color: blue; */
+    position: absolute;
+    bottom: 0px;
+    top: 186px;
+    left: 0px;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: scroll;
+
+}
+
+.taskBoard {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.dashboardOuterDiv {
+    width: calc(100% - 10px);
+    position: absolute;
+    bottom: 0px;
+    top: 0px;
+    left: 10px;
+    /* background-color: red; */
 }

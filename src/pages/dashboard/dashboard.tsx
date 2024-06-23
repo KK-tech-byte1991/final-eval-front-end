@@ -1,13 +1,29 @@
 
+import { addPeople } from "../../assets"
 import styles from "./dashboard.module.css"
+// import Modal from "../../components/Modal/modal"
+import StatusDiv from "./statusDiv/statusDiv"
 const Dashboard = () => {
   let userDetails = sessionStorage.getItem("userDetails") ? JSON.parse(sessionStorage.getItem("userDetails") || "") : null
 
   return (
-    <div style={{ width: "40%", paddingLeft: "40px" }}>
+    <div className={styles.dashboardOuterDiv}>
       <h4 className={styles.dashboardNameHeading}>Welcome  {userDetails?.name}</h4>
 
-      <h2 className={styles.heading}>Board</h2>
+      <div style={{ display: "flex" }}>
+        <h2 className={styles.heading}>Board &nbsp;</h2>
+        <div className={styles.addPeople}>
+          <button>
+            <img src={addPeople} alt="altpeople" /> &nbsp;Add People</button>
+        </div>
+      </div>
+      <div className={styles.boardContent}>
+        <div className={styles.taskBoard}>
+
+          {["Backlog", "To Do", "In Progress", "Done"].map((status: string) => <StatusDiv title={status}/>)}
+        </div>
+      </div>
+      {/* <Modal></Modal> */}
     </div>
   )
 }
