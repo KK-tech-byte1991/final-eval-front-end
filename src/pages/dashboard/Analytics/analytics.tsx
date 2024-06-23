@@ -2,8 +2,8 @@
 import styles from "./analytic.module.css"
 const Analytics = () => {
   return (
-    <div>
-      <h4 className={styles.heading}>Settings</h4>
+    <div style={{ width: "40%", paddingLeft: "40px" }}>
+      <h4 className={styles.heading}>Analytics</h4>
     </div>
   )
 }

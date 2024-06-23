@@ -2,14 +2,14 @@
 import ReactDOM from 'react-dom/client'
 import React from 'react';
 import { router } from "./router.tsx"
-import './index.css'
+import './index.module.css'
 import {
 
   RouterProvider,
 } from "react-router-dom";
 import { Toaster } from 'sonner';
 ;
-
+// import 'normalize.css';
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

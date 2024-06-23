@@ -1,6 +1,28 @@
 .container {
     display: grid;
-    grid-template-columns: 20% 80%;   
-    width: 100vw;
-    height: 100vh;
+    grid-template-columns: 20% 80%;
+    width: 100%;
+    height: calc(100vh - 1px);
+    overflow: hide;
+    
+}
+
+.dashboardNameHeading {
+    color: #000;
+    /* leading-trim: both;
+    text-edge: cap; */
+    font-family: Poppins;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.heading {
+    color: #000;
+    font-family: Poppins;
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }

@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 const LoginForm = () => {
+  
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const LoginForm = () => {
         .then((response) => {
           toast.success("Login Successfully")
           sessionStorage.setItem("token", response.data.token)
+          sessionStorage.setItem("userDetails", JSON.stringify(response.data.userDetails))
           navigate("/dashboard")
         })
         .catch((err) => {

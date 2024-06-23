@@ -34,7 +34,7 @@ const Sidebar = () => {
       }
       <button className={styles.logoutDiv}
         onClick={() => {
-          localStorage.clear();
+          sessionStorage.clear();
           navigate("/")
         }
 

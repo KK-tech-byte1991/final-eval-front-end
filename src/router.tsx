@@ -6,6 +6,8 @@ import Login from "./pages/LoginRegister/Login";
 import Register from "./pages/LoginRegister/Register";
 import { AnalyticsLayout, DashboardLayout, SettingsLayout } from "./pages/dashboard/layout";
 import Home from "./pages/home";
+
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -31,4 +33,5 @@ export const router = createBrowserRouter([
     path: "/analytics",
     element: <AnalyticsLayout />
   }
-]);
+
+]) 
