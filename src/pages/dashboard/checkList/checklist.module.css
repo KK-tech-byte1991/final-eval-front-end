@@ -1,0 +1,27 @@
+.container {
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-top: 20px;
+}
+
+.headerDiv {
+    color: #000;
+  
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.expandedButton{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+.taskList{
+    
+}

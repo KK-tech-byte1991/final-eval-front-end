@@ -1,6 +1,7 @@
 
 import styles from "./taskList.module.css"
 import { ellipsesHigh, threeDots } from '../../../assets'
+import CheckList from "../checkList/checkList"
 
 const TaskList = () => {
   return (
@@ -22,6 +23,7 @@ const TaskList = () => {
         </div>
       </div>
       <div className={styles.heroSection}>Hero Section</div>
+      <CheckList/>
       <div className={styles.footer}>
         <button className={styles.taskStatusButton}>15 May</button>
         <button className={styles.taskStatusButton}>To Do</button>

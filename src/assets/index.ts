@@ -12,10 +12,13 @@ import collapse from "./codicon_collapse-all.svg"
 import plus from "./plus.svg"
 import threeDots from "./threedots.svg"
 import ellipsesHigh from "./ellipseHigh.svg"
+import arrowDown from "./arrowDown.svg"
+import arrowUp from "./arrowUp.svg"
 
 export {
     registerArt, emailIcon, lockIcon,
     personIcon, database,
     codesandbox, layout, settings, logout,
-    addPeople, plus, collapse,threeDots,ellipsesHigh
+    addPeople, plus, collapse, threeDots, ellipsesHigh,
+    arrowDown, arrowUp
 }
