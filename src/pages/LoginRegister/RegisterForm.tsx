@@ -17,7 +17,7 @@ const RegisterForm = () => {
     const handleRegister = () => {
         const payload = { name, password, email }
         if (password == confirmPassword) {
-            axios.post("http://localhost:3000/" + "users/create", payload)
+            axios.post(import.meta.env.VITE_BASE_URL  + "/users/create", payload)
                 .then(() => {
                     setName("")
                     setPassword("")
