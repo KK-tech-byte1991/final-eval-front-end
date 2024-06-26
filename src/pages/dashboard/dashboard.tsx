@@ -1,10 +1,12 @@
 
 import { addPeople } from "../../assets"
 import styles from "./dashboard.module.css"
-// import Modal from "../../components/Modal/modal"
+import Modal from "../../components/Modal/modal"
 import StatusDiv from "./statusDiv/statusDiv"
+import { useState } from "react"
 const Dashboard = () => {
-  let userDetails = sessionStorage.getItem("userDetails") ? JSON.parse(sessionStorage.getItem("userDetails") || "") : null
+  let userDetails = sessionStorage.getItem("userDetails") ? JSON.parse(sessionStorage.getItem("userDetails") ?? "") : null
+  const [assignOpen, setAssignOpen] = useState(false)
 
   return (
     <div className={styles.dashboardOuterDiv}>
@@ -13,17 +15,21 @@ const Dashboard = () => {
       <div style={{ display: "flex" }}>
         <h2 className={styles.heading}>Board &nbsp;</h2>
         <div className={styles.addPeople}>
-          <button>
+          <button onClick={() => setAssignOpen(true)}>
             <img src={addPeople} alt="altpeople" /> &nbsp;Add People</button>
         </div>
       </div>
       <div className={styles.boardContent}>
         <div className={styles.taskBoard}>
 
-          {["Backlog", "To Do", "In Progress", "Done"].map((status: string) => <StatusDiv title={status}/>)}
+          {["Backlog", "To Do", "In Progress", "Done"].map((status: string) => <StatusDiv
+            key={status}
+            title={status} />)}
         </div>
       </div>
-      {/* <Modal></Modal> */}
+      {assignOpen && <Modal
+        open={assignOpen}
+        onHandleCancel={setAssignOpen}></Modal>}
     </div>
   )
 }

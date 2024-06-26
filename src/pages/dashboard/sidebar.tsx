@@ -2,6 +2,7 @@
 import styles from "./sidebar.module.css"
 import { database, codesandbox, layout, settings, logout } from "../../assets"
 import { Link, useNavigate } from "react-router-dom"
+import LogoutConfirmModel from "../../components/LogoutConfirmModel/logoutConfirmModel"
 const Sidebar = () => {
   const labels = [
     { title: "Board", link: "/dashboard", icon: layout },
@@ -48,6 +49,7 @@ const Sidebar = () => {
           <p>   Log out</p>
         </div>
       </button>
+      <LogoutConfirmModel/>
     </div>
   )
 }

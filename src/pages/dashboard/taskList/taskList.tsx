@@ -10,7 +10,7 @@ const TaskList = () => {
 
 
         <div className={styles.priorityDiv}>
-          <img src={ellipsesHigh} />
+          <img src={ellipsesHigh} alt="elipsis"/>
           {/* <div className={styles.initialsDiv}></div> */}
 
           <p className={styles.priorityLabel}> High Priority</p>

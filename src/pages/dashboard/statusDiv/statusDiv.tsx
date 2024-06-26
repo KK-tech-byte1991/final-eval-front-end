@@ -12,7 +12,7 @@ const StatusDiv = ({ title }: any) => {
                 <button className={styles.headerButton}><img src={collapse} /></button>
             </div>
             <div className={styles.body}>
-                {[1, 2, 3, 4, 5,6,7].map(() => <TaskList />)}
+                {[1, 2, 3, 4, 5,6,7].map((task:number) => <TaskList  key={task}/>)}
             </div>
 
         </div>

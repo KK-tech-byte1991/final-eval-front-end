@@ -4,7 +4,7 @@ import { emailIcon, lockIcon, personIcon } from '../../assets';
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import axios from "axios";
-import {  toast } from "sonner";
+import { toast } from "sonner";
 const RegisterForm = () => {
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
@@ -59,6 +59,18 @@ const RegisterForm = () => {
 
                 <img src={lockIcon} alt="lock" />
                 <input
+                    value={password}
+                    type='password'
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+
+            </div>
+            <br/><br/>
+            <div className={styles.inputContainer}>
+
+                <img src={lockIcon} alt="lock" />
+                <input
                     value={confirmPassword}
                     type='password'
                     placeholder="Confirm Password"
@@ -69,18 +81,8 @@ const RegisterForm = () => {
             </div>
             <p className={styles.errorInput}>{passwordError}</p>
             <br /><br />
-            <div className={styles.inputContainer}>
 
-                <img src={lockIcon} alt="lock" />
-                <input
-                    value={password}
-                    type='password'
-                    placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-
-            </div>
-            <br /><br /><br />
+           
             <div className={styles.inputContainer}>
                 <button className={styles.currentFunctionButton}
                     onClick={handleRegister}
