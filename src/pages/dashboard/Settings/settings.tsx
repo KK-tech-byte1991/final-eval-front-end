@@ -4,6 +4,7 @@ import { emailIcon, lockIcon, personIcon } from '../../../assets';
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 const Settings = () => {
   let userDetails = JSON.parse(sessionStorage.getItem("userDetails") || "")
   console.log("userDetails", userDetails)
@@ -12,7 +13,7 @@ const Settings = () => {
   const [oldPassword, setOldPassword] = useState("")
   const [email, setEmail] = useState(userDetails.email)
   // const [passwordError, setPasswordError] = useState("")
-
+  const navigate = useNavigate()
   const handleUpdate = () => {
     axios.post(import.meta.env.VITE_BASE_URL + "/users/updateuser", { id: userDetails.id, name, password, email, oldPassword })
       .then((res: any) => {
@@ -21,6 +22,10 @@ const Settings = () => {
         sessionStorage.setItem("userDetails", JSON.stringify(res.data))
         setPassword("")
         setOldPassword("")
+        if (password || email !== userDetails.email) {
+          sessionStorage.clear();
+          navigate("/")
+        }
       })
 
       .catch((err) => toast.error(err.response.data))

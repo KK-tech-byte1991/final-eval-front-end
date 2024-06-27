@@ -1,9 +1,10 @@
 
 
+import { useNavigate } from "react-router-dom";
 import styles from "./logoutConfirmModal.module.css"
-const LogoutConfirmModel = () => {
+const LogoutConfirmModel = (props: any) => {
 
-   
+    const navigate = useNavigate();
     return (
         <div className={styles.modal}> <div className={styles.modalContent}>
             <span className={styles.close} >&times;</span>
@@ -20,10 +21,16 @@ const LogoutConfirmModel = () => {
                 <br />
                 <div className={styles.buttonDiv}>
                     <button
-                        //   onClick={() => props.onHandleCancel(false)}
+                        onClick={() => props.handleClose(false)}
                         className={styles.cancelButton}>Cancel</button>
                     <button
-                        type="submit"
+                        onClick={() => {
+                            sessionStorage.clear();
+                            navigate("/")
+                        }
+
+                        }
+
                         className={styles.submitButton}>Submit</button>
                 </div>
 

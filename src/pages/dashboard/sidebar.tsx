@@ -1,8 +1,9 @@
 
 import styles from "./sidebar.module.css"
 import { database, codesandbox, layout, settings, logout } from "../../assets"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, } from "react-router-dom"
 import LogoutConfirmModel from "../../components/LogoutConfirmModel/logoutConfirmModel"
+import { useState } from "react"
 const Sidebar = () => {
   const labels = [
     { title: "Board", link: "/dashboard", icon: layout },
@@ -10,7 +11,8 @@ const Sidebar = () => {
     { title: "Settings", link: "/settings", icon: settings }
   ]
 
-  const navigate = useNavigate();
+  const [openLogoutModel, setOpenLogoutModel] = useState(false)
+  
   return (
     <div className={styles.sidebarContainer}>
       <div className={styles.brandDiv}>
@@ -34,12 +36,9 @@ const Sidebar = () => {
         </Link >)
       }
       <button className={styles.logoutDiv}
-        onClick={() => {
-          sessionStorage.clear();
-          navigate("/")
-        }
+        onClick={() => setOpenLogoutModel(true)}
 
-        }
+     
       >
 
         <div className={styles.iconContainer}>
@@ -49,7 +48,7 @@ const Sidebar = () => {
           <p>   Log out</p>
         </div>
       </button>
-      <LogoutConfirmModel/>
+      {openLogoutModel && <LogoutConfirmModel handleClose={setOpenLogoutModel} />}
     </div>
   )
 }

@@ -14,11 +14,12 @@ import threeDots from "./threedots.svg"
 import ellipsesHigh from "./ellipseHigh.svg"
 import arrowDown from "./arrowDown.svg"
 import arrowUp from "./arrowUp.svg"
+import deleteIcon from "./Delete.svg"
 
 export {
     registerArt, emailIcon, lockIcon,
     personIcon, database,
     codesandbox, layout, settings, logout,
     addPeople, plus, collapse, threeDots, ellipsesHigh,
-    arrowDown, arrowUp
+    arrowDown, arrowUp,deleteIcon
 }

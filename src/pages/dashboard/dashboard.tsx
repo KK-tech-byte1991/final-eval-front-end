@@ -4,9 +4,13 @@ import styles from "./dashboard.module.css"
 import Modal from "../../components/Modal/modal"
 import StatusDiv from "./statusDiv/statusDiv"
 import { useState } from "react"
+import TaskModal from "../../components/TaskModal/TaskModal"
 const Dashboard = () => {
   let userDetails = sessionStorage.getItem("userDetails") ? JSON.parse(sessionStorage.getItem("userDetails") ?? "") : null
+
+  
   const [assignOpen, setAssignOpen] = useState(false)
+  const [taskModalOpen, setTaskModalOpen] = useState(false)
 
   return (
     <div className={styles.dashboardOuterDiv}>
@@ -23,6 +27,7 @@ const Dashboard = () => {
         <div className={styles.taskBoard}>
 
           {["Backlog", "To Do", "In Progress", "Done"].map((status: string) => <StatusDiv
+            toggleTaskModal={setTaskModalOpen}
             key={status}
             title={status} />)}
         </div>
@@ -30,6 +35,8 @@ const Dashboard = () => {
       {assignOpen && <Modal
         open={assignOpen}
         onHandleCancel={setAssignOpen}></Modal>}
+
+      {taskModalOpen && <TaskModal onHandleClose={setTaskModalOpen} />}
     </div>
   )
 }
