@@ -16,7 +16,7 @@ const StatusDiv = ({ title, toggleTaskModal, data, setMode, mode, fetchBoardData
     }
 
     const handleDragOver = (e: any) => {
-        console.log("dddddddddd", e)
+        
         e.preventDefault()
     }
 

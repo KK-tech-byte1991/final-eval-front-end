@@ -39,7 +39,7 @@ const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit }: any) => {
 
   const handleDelete = (id: string) => {
     axiosInstance.delete("/todo/delete/" + id)
-      .then((res) => fetchBoardData())
+      .then(() => fetchBoardData())
   }
   const handleStatusChange = (status: string) => {
     let taskDataUpdated = JSON.parse(JSON.stringify(taskData))

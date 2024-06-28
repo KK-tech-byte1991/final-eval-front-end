@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import styles from "./modal.module.css"
 import { deleteIcon } from "../../assets"
 import { toast } from "sonner"
-import axios from "axios"
 import axiosInstance from "../../hooks/axiosInstance"
 const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) => {
 
@@ -15,7 +14,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
   const [checkList, setCheckList] = useState([])
 
 
-  const [currentCheckList, setCurrentCheckList] = useState("")
+ 
 
   useEffect(() => {
     if (selectedTask) {
@@ -34,8 +33,8 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
     let a = { title: string, status: updatedCheckList[index].status }
     updatedCheckList[index] = a
     setCheckList(updatedCheckList)
-    setCurrentCheckList("")
-    setAdding(false)
+  
+
   }
 
   const handleEditStatusCheckList = (index: number, checked: boolean) => {
@@ -57,8 +56,8 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
     let a = { title: "", status: true }
     updatedCheckList.push(a)
     setCheckList(updatedCheckList)
-    setCurrentCheckList("")
-    setAdding(false)
+   
+   
   }
 
   const handleDelete = (index: number) => {
@@ -99,7 +98,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
   }
 
   const [hasValue, setHasValue] = useState(false);
-  const [adding, setAdding] = useState(false)
+ 
 
   useEffect(() => {
     setHasValue(endTime !== '');
