@@ -1,11 +1,11 @@
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./modal.module.css"
 import { deleteIcon } from "../../assets"
 import { toast } from "sonner"
 import axios from "axios"
 import axiosInstance from "../../hooks/axiosInstance"
-const TaskModal = (props: any) => {
+const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) => {
 
   const [toDoName, setToDoName] = useState("")
   const [toDoPriority, setToDoPriority] = useState("")
@@ -14,12 +14,48 @@ const TaskModal = (props: any) => {
   const [assignedTo, setAssignedTo] = useState("")
   const [checkList, setCheckList] = useState([])
 
+
   const [currentCheckList, setCurrentCheckList] = useState("")
 
-  const handleAddCheckList = () => {
+  useEffect(() => {
+    if (selectedTask) {
+      setToDoName(selectedTask.toDoName)
+      setToDoPriority(selectedTask.toDoPriority)
+      setEndTime(selectedTask.endTime)
+      setCreatedBy(selectedTask.createdBy)
+      setAssignedTo(selectedTask.assignedTo)
+      setCheckList(selectedTask.checkList)
+    }
+  }, [selectedTask])
+ 
+
+  const handleEditTitleCheckList = (index: number, string: string) => {
     let updatedCheckList = JSON.parse(JSON.stringify(checkList))
-    let a = { title: currentCheckList, status: true }
-    currentCheckList?.length > 0 && updatedCheckList.push(a)
+    let a = { title: string, status: updatedCheckList[index].status }
+    updatedCheckList[index] = a
+    setCheckList(updatedCheckList)
+    setCurrentCheckList("")
+    setAdding(false)
+  }
+
+  const handleEditStatusCheckList = (index: number, checked: boolean) => {
+    let updatedCheckList = JSON.parse(JSON.stringify(checkList))
+    let a = { title: updatedCheckList[index].title, status: checked }
+    updatedCheckList[index] = a
+    setCheckList(updatedCheckList)
+  }
+  const handleAddCheckList = () => {
+
+
+    let updatedCheckList = JSON.parse(JSON.stringify(checkList))
+    // let a = { title: currentCheckList, status: true }
+    // currentCheckList?.length > 0 && updatedCheckList.push(a)
+    // setCheckList(updatedCheckList)
+    // setCurrentCheckList("")
+    // setAdding(false)
+
+    let a = { title: "", status: true }
+    updatedCheckList.push(a)
     setCheckList(updatedCheckList)
     setCurrentCheckList("")
     setAdding(false)
@@ -32,26 +68,42 @@ const TaskModal = (props: any) => {
     setCheckList(updatedCheckList)
 
   }
+
   const handleSubmit = () => {
 
     if (toDoName.length == 0 || toDoPriority.length == 0 || endTime.length == 0) {
       return toast.error("Please fill al required fields")
     }
-    let status = "TODO"
-    let createdBy = JSON.parse(sessionStorage.getItem("userDetails") || "")?.id
-    const payload = { toDoName, toDoPriority, endTime, createdBy, assignedTo, checkList, status }
-    console.log("payload", payload)
+    let status = mode
 
-    axiosInstance.post("/todo/create", payload).then(() => {
-      toast.success("Task Added Successfully");
-      props.succesCallBack();
-      props.onHandleClose(false)
-    })
+    if (selectedTask?._id) {
+      let payload = { toDoName, toDoPriority, endTime, createdBy, assignedTo, checkList, status }
+      axiosInstance.put("/todo/edit/" + selectedTask?._id, payload).then(() => {
+        toast.success("Task updated Successfully");
+        succesCallBack();
+        onHandleClose(false)
+      })
 
+    } else {
+
+      let createdBy = JSON.parse(sessionStorage.getItem("userDetails") || "")?.id
+      const payload = { toDoName, toDoPriority, endTime, createdBy, assignedTo, checkList, status }
+      console.log("payload", payload)
+
+      axiosInstance.post("/todo/create", payload).then(() => {
+        toast.success("Task Added Successfully");
+        succesCallBack();
+        onHandleClose(false)
+      })
+    }
   }
 
   const [hasValue, setHasValue] = useState(false);
   const [adding, setAdding] = useState(false)
+
+  useEffect(() => {
+    setHasValue(endTime !== '');
+  }, [endTime])
 
   return (
     <div className={styles.modal}>
@@ -84,38 +136,35 @@ const TaskModal = (props: any) => {
 
           </div>
           <div className={styles.priorityDiv}>
-            <label className={styles.title}>CheckList (0/0) <span className={styles.required}>*</span></label>
-          </div>
-          {checkList.map((check: any, index: number) => <ul key={check.title}>
-            {check.title}
-            <button onClick={() => handleDelete(index)}><img src={deleteIcon} alt="delete" /></button></ul>)}
+            <label className={styles.title}>CheckList (0/0) <span className={styles.required}>*</span></label></div>
 
-          {adding && <div className={styles.inputContainer}>
-            <button className={styles.inputAdornment} onClick={handleAddCheckList}>
-              {/* <img src={deleteIcon} alt="delete" /> */}
-              add
+
+
+
+          {checkList.map((check: any, index: number) => <div className={styles.inputContainer}>
+
+            <button className={styles.inputAdornment} onClick={() => handleDelete(index)}>
+              <img src={deleteIcon} alt="delete" />
             </button>
 
-            <button className={styles.inputAdornment}
-            // onClick={handleAddCheckList}
-            >
-              {/* <img src={deleteIcon} alt="delete" /> */}
-            </button>
 
-            <input type="text" value={currentCheckList}
-              onChange={(e) => setCurrentCheckList(e.target.value)}
+            <input type="checkbox" checked={JSON.parse(check.status)} onChange={(e) => handleEditStatusCheckList(index, e.target.checked)} />
+            <input type="text" value={check.title}
+              onChange={(e) => handleEditTitleCheckList(index, e.target.value)}
               className={styles.addNewCheckListInput} placeholder="Add Task" />
-          </div>}
+          </div>)}
+
+
 
           <div className={styles.addNew}>
-            <button onClick={() => setAdding(true)} className={styles.addNewButton}>+ Add New</button></div>
+            <button onClick={handleAddCheckList} className={styles.addNewButton}>+ Add New</button></div>
 
           <div className={styles.footer}>
             <div className={styles.dateContainer}>
               <input
                 type="date"
                 value={endTime}
-                onChange={(e) => { setHasValue(e.target.value !== ''); setEndTime(e.target.value) }}
+                onChange={(e) => { setEndTime(e.target.value) }}
                 className={styles.inputField}
               />
 
@@ -125,7 +174,7 @@ const TaskModal = (props: any) => {
             </div>
 
             <button className={styles.cancelButton}
-              onClick={() => props.onHandleClose(false)}>Cancel</button>
+              onClick={() => onHandleClose(false)}>Cancel</button>
             <button className={styles.saveButton} onClick={handleSubmit}>Save</button>
           </div>
         </div>

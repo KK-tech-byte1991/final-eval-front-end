@@ -9,3 +9,10 @@ body {
 	height: 100vh;
 	background-color: bisque;
 }
+input[type="checkbox"] {
+	cursor: pointer;
+  }
+
+  button{
+	cursor: pointer;
+  }

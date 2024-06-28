@@ -4,6 +4,8 @@
     /* min-height: 175px; */
     position: relative;
     padding-bottom: 10px;
+    height:  fit-content;
+    margin-bottom: 10px;
 }
 
 .topDiv {
@@ -79,4 +81,27 @@
     font-weight: 500;
     line-height: normal;
     text-transform: uppercase;
+}
+
+.threeDotsButton {
+    background-color: white;
+    border: none;
+    padding-top: 6px;
+    cursor: pointer;
+}
+
+.optionButton {
+    background-color: white;
+    border: none;
+    color: #000;
+   
+    font-family: "Poppins",sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: left;
+    margin-top: 6px;
+    cursor: pointer;
+    
 }
