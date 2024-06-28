@@ -1,8 +1,9 @@
 .taskBody {
     border-radius: 20px;
     background: #FFF;
-    min-height: 175px;
+    /* min-height: 175px; */
     position: relative;
+    padding-bottom: 10px;
 }
 
 .topDiv {
@@ -53,7 +54,7 @@
 }
 
 .footer {
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     justify-content: space-around;
     bottom: 25px;

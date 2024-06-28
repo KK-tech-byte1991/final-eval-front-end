@@ -2,11 +2,12 @@
     padding-left: 20px;
     padding-right: 10px;
     padding-top: 20px;
+    padding-bottom: 10px;
 }
 
 .headerDiv {
     color: #000;
-  
+
     font-family: Inter;
     font-size: 14px;
     font-style: normal;
@@ -17,11 +18,40 @@
     justify-content: space-between;
 }
 
-.expandedButton{
+.expandedButton {
     background-color: white;
     border: none;
     cursor: pointer;
 }
 .taskList{
-    
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.taskList>li {
+    display: flex;
+    width: 264px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* gap: 10px; */
+    border-radius: 12px;
+    border: 1px solid #E2E2E2;
+}
+
+.taskList >li input[type="checkbox"]:checked  {
+    background-color: #17A2B8;;
+}
+
+.taskList>li>label {
+    color: #000;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
