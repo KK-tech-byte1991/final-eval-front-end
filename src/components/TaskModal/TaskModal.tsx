@@ -4,6 +4,12 @@ import styles from "./modal.module.css"
 import { deleteIcon } from "../../assets"
 import { toast } from "sonner"
 import axiosInstance from "../../hooks/axiosInstance"
+import checkListTitle from "../../hooks/checkListTitle"
+import getPriorityEllipses from "../../hooks/getPriorityEllipses"
+
+
+
+
 const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) => {
 
   const [toDoName, setToDoName] = useState("")
@@ -14,7 +20,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
   const [checkList, setCheckList] = useState([])
 
 
- 
+
 
   useEffect(() => {
     if (selectedTask) {
@@ -26,14 +32,14 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
       setCheckList(selectedTask.checkList)
     }
   }, [selectedTask])
- 
+
 
   const handleEditTitleCheckList = (index: number, string: string) => {
     let updatedCheckList = JSON.parse(JSON.stringify(checkList))
     let a = { title: string, status: updatedCheckList[index].status }
     updatedCheckList[index] = a
     setCheckList(updatedCheckList)
-  
+
 
   }
 
@@ -56,8 +62,8 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
     let a = { title: "", status: true }
     updatedCheckList.push(a)
     setCheckList(updatedCheckList)
-   
-   
+
+
   }
 
   const handleDelete = (index: number) => {
@@ -71,7 +77,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
   const handleSubmit = () => {
 
     if (toDoName.length == 0 || toDoPriority.length == 0 || endTime.length == 0) {
-      return toast.error("Please fill al required fields")
+      return toast.error("Please fill all required fields")
     }
     let status = mode
 
@@ -98,7 +104,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
   }
 
   const [hasValue, setHasValue] = useState(false);
- 
+
 
   useEffect(() => {
     setHasValue(endTime !== '');
@@ -108,9 +114,9 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
     <div className={styles.modal}>
       <div className={styles.modalContent}>
         <div style={{ position: "relative", height: "100%" }}>
-          <label htmlFor="checkInput" className={styles.title}>Title</label>
+          <label htmlFor="checkInput" className={styles.title}>Title<span className={styles.required}>*</span></label>
 
-          <br /><br />
+          
 
           <input className={styles.taskTitle}
             placeholder="Enter Task Title"
@@ -121,26 +127,30 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
 
             <button id="priority" className={styles.priorityButton}
               style={{ backgroundColor: toDoPriority == "HIGH" ? "#767575" : "white", color: toDoPriority !== "HIGH" ? "#767575" : "white" }}
-              onClick={() => setToDoPriority("HIGH")}>HIGH PRIORITY</button>
+              onClick={() => setToDoPriority("HIGH")}><img src={getPriorityEllipses("HIGH")} alt="prio"/> &nbsp;&nbsp;HIGH PRIORITY</button>
 
             <button className={styles.priorityButton}
               onClick={() => setToDoPriority("MODERATE")}
               style={{ backgroundColor: toDoPriority == "MODERATE" ? "#767575" : "white", color: toDoPriority !== "MODERATE" ? "#767575" : "white" }}
-            >MODERATE PRIORITY</button>
+            ><img src={getPriorityEllipses("MODERATE")} alt="prio"/> &nbsp;&nbsp;MODERATE PRIORITY</button>
 
             <button
               className={styles.priorityButton}
               style={{ backgroundColor: toDoPriority == "LOW" ? "#767575" : "white", color: toDoPriority !== "LOW" ? "#767575" : "white" }}
-              onClick={() => setToDoPriority("LOW")}>LOW PRIORITY</button>
+              onClick={() => setToDoPriority("LOW")}><img src={getPriorityEllipses("LOW")} alt="prio"/> &nbsp;&nbsp;LOW PRIORITY</button>
 
           </div>
           <div className={styles.priorityDiv}>
-            <label className={styles.title}>CheckList (0/0) <span className={styles.required}>*</span></label></div>
+            <label className={styles.title}>
+              {checkListTitle(checkList)}
+              <span className={styles.required}>*</span></label></div>
 
 
 
 
-          {checkList.map((check: any, index: number) => <div className={styles.inputContainer}>
+          {checkList.map((check: any, index: number) => <div
+            className={styles.inputContainer}
+            key={index}>
 
             <button className={styles.inputAdornment} onClick={() => handleDelete(index)}>
               <img src={deleteIcon} alt="delete" />
@@ -162,7 +172,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
             <div className={styles.dateContainer}>
               <input
                 type="date"
-                value={endTime}
+                value={endTime.split("T")[0]}
                 onChange={(e) => { setEndTime(e.target.value) }}
                 className={styles.inputField}
               />

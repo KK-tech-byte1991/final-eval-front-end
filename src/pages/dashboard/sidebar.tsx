@@ -4,7 +4,7 @@ import { database, codesandbox, layout, settings, logout } from "../../assets"
 import { Link, } from "react-router-dom"
 import LogoutConfirmModel from "../../components/LogoutConfirmModel/logoutConfirmModel"
 import { useState } from "react"
-const Sidebar = () => {
+const Sidebar = ({ mode }: any) => {
   const labels = [
     { title: "Board", link: "/dashboard", icon: layout },
     { title: "Analytics", link: "/analytics", icon: database },
@@ -12,9 +12,9 @@ const Sidebar = () => {
   ]
 
   const [openLogoutModel, setOpenLogoutModel] = useState(false)
-  
+
   return (
-    <div className={styles.sidebarContainer}>
+    <div className={styles.sidebarContainer} style={mode == "public" ? { border: "none" } : {}}>
       <div className={styles.brandDiv}>
 
         <div className={styles.iconContainer}>
@@ -25,7 +25,7 @@ const Sidebar = () => {
         </div>
       </div>
       {
-        labels.map((label: any) => <Link to={label.link} style={{ textDecoration: 'none' }}
+        mode !== "public" && labels.map((label: any) => <Link to={label.link} style={{ textDecoration: 'none' }}
           key={label.title}
           className={styles.labelDiv}
         ><div className={styles.iconContainer}>
@@ -35,10 +35,10 @@ const Sidebar = () => {
           </div>
         </Link >)
       }
-      <button className={styles.logoutDiv}
+      {mode !== "public" && <button className={styles.logoutDiv}
         onClick={() => setOpenLogoutModel(true)}
 
-     
+
       >
 
         <div className={styles.iconContainer}>
@@ -47,7 +47,7 @@ const Sidebar = () => {
         <div className={styles.logoutLabelDiv}>
           <p>   Log out</p>
         </div>
-      </button>
+      </button>}
       {openLogoutModel && <LogoutConfirmModel handleClose={setOpenLogoutModel} />}
     </div>
   )

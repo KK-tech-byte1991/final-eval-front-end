@@ -16,7 +16,7 @@ const StatusDiv = ({ title, toggleTaskModal, data, setMode, mode, fetchBoardData
     }
 
     const handleDragOver = (e: any) => {
-        
+
         e.preventDefault()
     }
 
@@ -42,13 +42,12 @@ const StatusDiv = ({ title, toggleTaskModal, data, setMode, mode, fetchBoardData
                 <h3 style={{ width: "70%" }}>{title}</h3>
 
                 <button className={styles.headerButton} onClick={() => { setMode(mode); toggleTaskModal(true) }}><img src={plus} alt="plus" /></button>
-                <button className={styles.headerButton} onClick={() => setExpandAll(!expandAll)}><img src={collapse} /></button>
+                <button className={styles.headerButton} onClick={() => setExpandAll(!expandAll)}><img src={collapse} alt="collapse" /></button>
 
             </div>
 
             <div className={styles.body}>
                 {data.map((task: any) => <TaskList
-
                     key={task.id}
                     taskData={task}
                     handleEdit={handleEdit}

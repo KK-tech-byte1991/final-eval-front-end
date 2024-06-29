@@ -28,6 +28,7 @@
     justify-content: space-evenly;
     flex-direction: column;
     gap: 5px;
+
 }
 
 .taskList>li {
@@ -37,14 +38,14 @@
     padding-bottom: 12px;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     /* gap: 10px; */
     border-radius: 12px;
     border: 1px solid #E2E2E2;
 }
 
 .taskList >li input[type="checkbox"]:checked  {
-    background-color: #17A2B8;;
+    background-color: #17A2B8;
 }
 
 .taskList>li>label {
@@ -54,4 +55,6 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    overflow-wrap: break-word;
+    width: calc(100% - 20px);
 }

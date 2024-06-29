@@ -15,11 +15,15 @@ import ellipsesHigh from "./ellipseHigh.svg"
 import arrowDown from "./arrowDown.svg"
 import arrowUp from "./arrowUp.svg"
 import deleteIcon from "./Delete.svg"
+import redEllipses from "./redEllipse.svg"
+import greenEllipses from "./greenEllipses.svg"
+import blueEllipses from "./blueEllipses.svg"
 
 export {
     registerArt, emailIcon, lockIcon,
     personIcon, database,
     codesandbox, layout, settings, logout,
     addPeople, plus, collapse, threeDots, ellipsesHigh,
-    arrowDown, arrowUp,deleteIcon
+    arrowDown, arrowUp, deleteIcon,
+    redEllipses, blueEllipses, greenEllipses
 }

@@ -1,11 +1,11 @@
 import {
   createBrowserRouter
 } from "react-router-dom";
-
 import Login from "./pages/LoginRegister/Login";
 import Register from "./pages/LoginRegister/Register";
-import { AnalyticsLayout, DashboardLayout, SettingsLayout } from "./pages/dashboard/layout";
+import { AnalyticsLayout, DashboardLayout, SettingsLayout, TaskLayout } from "./pages/dashboard/layout";
 import Home from "./pages/home";
+
 
 
 export const router = createBrowserRouter([
@@ -32,6 +32,13 @@ export const router = createBrowserRouter([
   {
     path: "/analytics",
     element: <AnalyticsLayout />
+  },
+  {
+    path: "/task/:id",
+    element: <TaskLayout />
+  }, {
+    path: "/*",
+    element: <Login />
   }
 
 ]) 

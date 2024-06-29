@@ -3,14 +3,15 @@ import { arrowDown, arrowUp } from "../../../assets"
 import styles from "./checklist.module.css"
 import axiosInstance from "../../../hooks/axiosInstance"
 import { toast } from "sonner"
+import checkListTitle from "../../../hooks/checkListTitle"
 
-const CheckList = ({ expandAll, checkListData, taskData ,fetchBoardData}: any) => {
+const CheckList = ({ expandAll, checkListData, taskData, fetchBoardData,mode }: any) => {
     const [expanded, setExpanded] = useState(false)
 
     useEffect(() => {
         setExpanded(expandAll)
     }, [expandAll])
-    console.log("cckkkkkkk", checkListData)
+   
 
     const handleEditStatusCheckList = (index: number, checked: boolean) => {
         let updatedCheckList = JSON.parse(JSON.stringify(checkListData))
@@ -19,15 +20,18 @@ const CheckList = ({ expandAll, checkListData, taskData ,fetchBoardData}: any) =
         let taskDataUpdated = JSON.parse(JSON.stringify(taskData))
         taskDataUpdated.checkList = updatedCheckList;
 
-        axiosInstance.put("/todo/edit/" + taskDataUpdated?._id,taskDataUpdated ).then(() => {
+        axiosInstance.put("/todo/edit/" + taskDataUpdated?._id, taskDataUpdated).then(() => {
             toast.success("Check List updated Successfully");
-            fetchBoardData()           
-          })
+            fetchBoardData()
+        })
     }
+
+   
+
     return (
         <div className={styles.container}>
             <div className={styles.headerDiv}>
-                Checklist(1/3)
+                {checkListTitle(checkListData)}
                 <button className={styles.expandedButton}
                     onClick={() => setExpanded(!expanded)}> {expanded ? <img src={arrowDown} /> :
                         <img src={arrowUp} />}</button>
@@ -35,15 +39,20 @@ const CheckList = ({ expandAll, checkListData, taskData ,fetchBoardData}: any) =
 
             {expanded && <div className={styles.taskList}>
 
-                {checkListData.map((task: any,index:number) => (
+                {checkListData.map((task: any, index: number) => (
                     <li
                         key={task.id}>
                         <input
-                         type="checkbox"
+                            type="checkbox"
+                            style={{
+                                accentColor: '#17A2B8',
+                                borderRadius:"20px"
+                              }}
+                            
                             checked={JSON.parse(task.status)}
-                            onChange={(e)=>handleEditStatusCheckList(index,e.target.checked)}
+                            onChange={(e) => mode !=="public" && handleEditStatusCheckList(index, e.target.checked)}
                         />
-                        <label>{task.title}</label></li>))
+                        <label >{task.title}</label></li>))
                 }
             </div>}
 
