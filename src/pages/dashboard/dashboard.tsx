@@ -13,19 +13,35 @@ const Dashboard = () => {
   const [assignOpen, setAssignOpen] = useState(false)
   const [taskModalOpen, setTaskModalOpen] = useState(false)
   const [boardData, setBoardData] = useState([])
+  const [boardUser, setBoardUser] = useState(null)
+
   const [mode, setMode] = useState("TODO")
   const [selectedTask, setSelectedTask] = useState<any>(null)
 
   const fetchBoardData = () => {
 
-    axiosInstance.get("/todo/all/user/" + userDetails.id).then((res) => setBoardData(res.data))
+    axiosInstance.get("/todo/all/user/" + userDetails.id).then((res) => {
+      setBoardData(res.data)
+
+
+
+    })
+   
+  }
+
+  const fetchBoardUser=()=>{
+    axiosInstance.get("/board/" + userDetails.id + "/owner").then((res) => {
+      setBoardUser(res.data)
+    })
   }
 
   useEffect(() => {
     fetchBoardData()
+    fetchBoardUser()
   }, [])
 
-  const handleTaskClose=()=>{
+  console.log(boardData,boardUser,"boardrelated---Info")
+  const handleTaskClose = () => {
     setTaskModalOpen(false)
     setSelectedTask(null)
   }
@@ -63,13 +79,19 @@ const Dashboard = () => {
       </div>
       {assignOpen && <Modal
         open={assignOpen}
-        onHandleCancel={setAssignOpen}></Modal>}
+        onHandleCancel={setAssignOpen}
+        //@ts-ignore
+        boardId={boardUser?._id}
+        succesCallBack={fetchBoardUser}
+
+      ></Modal>}
 
       {taskModalOpen && <TaskModal
         mode={mode}
         onHandleClose={handleTaskClose}
-        succesCallBack={fetchBoardData}
+        successCallBack={fetchBoardData}
         selectedTask={selectedTask}
+        boardUser={boardUser}
 
       />}
     </div>

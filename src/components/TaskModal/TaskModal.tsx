@@ -10,7 +10,7 @@ import getPriorityEllipses from "../../hooks/getPriorityEllipses"
 
 
 
-const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) => {
+const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask, boardUser }: any) => {
 
   const [toDoName, setToDoName] = useState("")
   const [toDoPriority, setToDoPriority] = useState("")
@@ -86,7 +86,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
       axiosInstance.put("/todo/edit/" + selectedTask?._id, payload).then(() => {
         toast.success("Task updated Successfully");
         succesCallBack();
-        onHandleClose(false)
+        onHandleClose()
       })
 
     } else {
@@ -98,7 +98,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
       axiosInstance.post("/todo/create", payload).then(() => {
         toast.success("Task Added Successfully");
         succesCallBack();
-        onHandleClose(false)
+        onHandleClose()
       })
     }
   }
@@ -116,7 +116,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
         <div style={{ position: "relative", height: "100%" }}>
           <label htmlFor="checkInput" className={styles.title}>Title<span className={styles.required}>*</span></label>
 
-          
+
 
           <input className={styles.taskTitle}
             placeholder="Enter Task Title"
@@ -127,19 +127,27 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
 
             <button id="priority" className={styles.priorityButton}
               style={{ backgroundColor: toDoPriority == "HIGH" ? "#767575" : "white", color: toDoPriority !== "HIGH" ? "#767575" : "white" }}
-              onClick={() => setToDoPriority("HIGH")}><img src={getPriorityEllipses("HIGH")} alt="prio"/> &nbsp;&nbsp;HIGH PRIORITY</button>
+              onClick={() => setToDoPriority("HIGH")}><img src={getPriorityEllipses("HIGH")} alt="prio" /> &nbsp;&nbsp;HIGH PRIORITY</button>
 
             <button className={styles.priorityButton}
               onClick={() => setToDoPriority("MODERATE")}
               style={{ backgroundColor: toDoPriority == "MODERATE" ? "#767575" : "white", color: toDoPriority !== "MODERATE" ? "#767575" : "white" }}
-            ><img src={getPriorityEllipses("MODERATE")} alt="prio"/> &nbsp;&nbsp;MODERATE PRIORITY</button>
+            ><img src={getPriorityEllipses("MODERATE")} alt="prio" /> &nbsp;&nbsp;MODERATE PRIORITY</button>
 
             <button
               className={styles.priorityButton}
               style={{ backgroundColor: toDoPriority == "LOW" ? "#767575" : "white", color: toDoPriority !== "LOW" ? "#767575" : "white" }}
-              onClick={() => setToDoPriority("LOW")}><img src={getPriorityEllipses("LOW")} alt="prio"/> &nbsp;&nbsp;LOW PRIORITY</button>
+              onClick={() => setToDoPriority("LOW")}><img src={getPriorityEllipses("LOW")} alt="prio" /> &nbsp;&nbsp;LOW PRIORITY</button>
 
           </div>
+
+          <div className={styles.priorityDiv}>
+            <label className={styles.title} htmlFor="assgSelect">Assign To</label>
+            <select id="assgSelect" className={styles.assignmentSelect}>
+              {boardUser?.affiliation.map((user: any) => <option value={user.email}>{user.email}</option>)
+              }
+
+            </select></div>
           <div className={styles.priorityDiv}>
             <label className={styles.title}>
               {checkListTitle(checkList)}
@@ -183,7 +191,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask }: any) =
             </div>
 
             <button className={styles.cancelButton}
-              onClick={() => onHandleClose(false)}>Cancel</button>
+              onClick={() => onHandleClose()}>Cancel</button>
             <button className={styles.saveButton} onClick={handleSubmit}>Save</button>
           </div>
         </div>

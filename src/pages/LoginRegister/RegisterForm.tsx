@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
+import validateEmail from "../../hooks/validateEmail";
 const RegisterForm = () => {
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
@@ -15,9 +16,14 @@ const RegisterForm = () => {
     const navigate = useNavigate();
 
     const handleRegister = () => {
+
+        if (!validateEmail(email)) {
+            return toast.info("Please enter proper email.")
+        }
+
         const payload = { name, password, email }
         if (password == confirmPassword) {
-            axios.post(import.meta.env.VITE_BASE_URL  + "/users/create", payload)
+            axios.post(import.meta.env.VITE_BASE_URL + "/users/create", payload)
                 .then(() => {
                     setName("")
                     setPassword("")
@@ -66,7 +72,7 @@ const RegisterForm = () => {
                 />
 
             </div>
-            <br/><br/>
+            <br /><br />
             <div className={styles.inputContainer}>
 
                 <img src={lockIcon} alt="lock" />
@@ -82,7 +88,7 @@ const RegisterForm = () => {
             <p className={styles.errorInput}>{passwordError}</p>
             <br /><br />
 
-           
+
             <div className={styles.inputContainer}>
                 <button className={styles.currentFunctionButton}
                     onClick={handleRegister}
