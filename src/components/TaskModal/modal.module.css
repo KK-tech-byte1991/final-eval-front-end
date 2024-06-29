@@ -161,6 +161,7 @@
   position: absolute;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   bottom: 0px;
   width: 100%;
 }

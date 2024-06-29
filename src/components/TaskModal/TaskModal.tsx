@@ -10,7 +10,7 @@ import getPriorityEllipses from "../../hooks/getPriorityEllipses"
 
 
 
-const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask, boardUser }: any) => {
+const TaskModal = ({ mode, fetchBoardData, onHandleClose, selectedTask, boardUser }: any) => {
 
   const [toDoName, setToDoName] = useState("")
   const [toDoPriority, setToDoPriority] = useState("")
@@ -20,7 +20,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask, boardUse
   const [checkList, setCheckList] = useState([])
 
 
-
+  console.log(boardUser, "boardUser")
 
   useEffect(() => {
     if (selectedTask) {
@@ -85,7 +85,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask, boardUse
       let payload = { toDoName, toDoPriority, endTime, createdBy, assignedTo, checkList, status }
       axiosInstance.put("/todo/edit/" + selectedTask?._id, payload).then(() => {
         toast.success("Task updated Successfully");
-        succesCallBack();
+        fetchBoardData();
         onHandleClose()
       })
 
@@ -97,7 +97,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask, boardUse
 
       axiosInstance.post("/todo/create", payload).then(() => {
         toast.success("Task Added Successfully");
-        succesCallBack();
+        fetchBoardData();
         onHandleClose()
       })
     }
@@ -143,8 +143,9 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask, boardUse
 
           <div className={styles.priorityDiv}>
             <label className={styles.title} htmlFor="assgSelect">Assign To</label>
-            <select id="assgSelect" className={styles.assignmentSelect}>
-              {boardUser?.affiliation.map((user: any) => <option value={user.email}>{user.email}</option>)
+            <select id="assgSelect" className={styles.assignmentSelect} value={assignedTo} onChange={(e) => setAssignedTo(e.target.value)} >
+              <option value={undefined}>Select Assigned To</option>
+              {boardUser?.affiliation?.map((user: any) => <option value={user.email}>{user.email}</option>)
               }
 
             </select></div>
@@ -156,7 +157,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask, boardUse
 
 
 
-          {checkList.map((check: any, index: number) => <div
+          {checkList?.map((check: any, index: number) => <div
             className={styles.inputContainer}
             key={index}>
 
@@ -192,6 +193,7 @@ const TaskModal = ({ mode, succesCallBack, onHandleClose, selectedTask, boardUse
 
             <button className={styles.cancelButton}
               onClick={() => onHandleClose()}>Cancel</button>
+
             <button className={styles.saveButton} onClick={handleSubmit}>Save</button>
           </div>
         </div>

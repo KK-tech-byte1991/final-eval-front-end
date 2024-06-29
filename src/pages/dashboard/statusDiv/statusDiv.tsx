@@ -47,7 +47,7 @@ const StatusDiv = ({ title, toggleTaskModal, data, setMode, mode, fetchBoardData
             </div>
 
             <div className={styles.body}>
-                {data.map((task: any) => <TaskList
+                {data?.map((task: any) => <TaskList
                     key={task.id}
                     taskData={task}
                     handleEdit={handleEdit}

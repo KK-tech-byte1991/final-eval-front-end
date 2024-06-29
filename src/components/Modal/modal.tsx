@@ -17,10 +17,12 @@ const Modal = (props: any) => {
       let payload = { email: emailId }
 
       axiosInstance.post("/board/" + props.boardId, payload)
-        .then(() => {
-          toast.success("User Added Successfully to the board")
-          props.successCallBack();
+        .then((res) => {
+          props.fetchBoardUser();
           props.onHandleCancel(false)
+          toast.success(res.data)
+          
+
         })
 
     } else {

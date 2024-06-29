@@ -19,12 +19,8 @@ const Dashboard = () => {
   const [selectedTask, setSelectedTask] = useState<any>(null)
 
   const fetchBoardData = () => {
-
     axiosInstance.get("/todo/all/user/" + userDetails.id).then((res) => {
       setBoardData(res.data)
-
-
-
     })
    
   }
@@ -63,7 +59,7 @@ const Dashboard = () => {
       <div className={styles.boardContent}>
         <div className={styles.taskBoard}>
 
-          {statusData.map((status: any) => <StatusDiv
+          {statusData?.map((status: any) => <StatusDiv
             toggleTaskModal={setTaskModalOpen}
             key={status.id}
             title={status.title}
@@ -82,14 +78,14 @@ const Dashboard = () => {
         onHandleCancel={setAssignOpen}
         //@ts-ignore
         boardId={boardUser?._id}
-        succesCallBack={fetchBoardUser}
+        fetchBoardUser={fetchBoardUser}
 
       ></Modal>}
 
       {taskModalOpen && <TaskModal
         mode={mode}
         onHandleClose={handleTaskClose}
-        successCallBack={fetchBoardData}
+        fetchBoardData={fetchBoardData}
         selectedTask={selectedTask}
         boardUser={boardUser}
 

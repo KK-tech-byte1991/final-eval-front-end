@@ -25,7 +25,7 @@ const Sidebar = ({ mode }: any) => {
         </div>
       </div>
       {
-        mode !== "public" && labels.map((label: any) => <Link to={label.link} style={{ textDecoration: 'none' }}
+        mode !== "public" && labels?.map((label: any) => <Link to={label.link} style={{ textDecoration: 'none' }}
           key={label.title}
           className={styles.labelDiv}
         ><div className={styles.iconContainer}>
