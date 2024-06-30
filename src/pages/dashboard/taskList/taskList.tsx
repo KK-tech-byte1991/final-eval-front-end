@@ -29,7 +29,7 @@ const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any
   }
 
   const getDueColor = () => {
-    console.log("colorrr", new Date(taskData.endTime), new Date())
+   
     if (taskData.status == "DONE") {
       return "green"
     }

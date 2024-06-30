@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 const Settings = () => {
   let userDetails = JSON.parse(sessionStorage.getItem("userDetails") || "")
-  console.log("userDetails", userDetails)
+
   const [name, setName] = useState(userDetails.name)
   const [password, setPassword] = useState("")
   const [oldPassword, setOldPassword] = useState("")
@@ -18,7 +18,7 @@ const Settings = () => {
     axios.post(import.meta.env.VITE_BASE_URL + "/users/updateuser", { id: userDetails.id, name, password, email, oldPassword })
       .then((res: any) => {
         toast.success("User Details Updated Successfully!!!")
-        console.log("hi", res.data)
+      
         sessionStorage.setItem("userDetails", JSON.stringify(res.data))
         setPassword("")
         setOldPassword("")

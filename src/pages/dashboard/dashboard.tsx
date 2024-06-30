@@ -1,5 +1,5 @@
 
-import { addPeople,  downVector } from "../../assets"
+import { addPeople, downVector } from "../../assets"
 import styles from "./dashboard.module.css"
 import Modal from "../../components/Modal/modal"
 import StatusDiv from "./statusDiv/statusDiv"
@@ -20,8 +20,10 @@ const Dashboard = () => {
   const [mode, setMode] = useState("TODO")
   const [selectedTask, setSelectedTask] = useState<any>(null)
 
+  const [filter, setFilter] = useState("week");
+
   const fetchBoardData = () => {
-    axiosInstance.get("/todo/all/user/" + userDetails.id).then((res) => {
+    axiosInstance.get("/todo/all/user/" + userDetails.id + "?filter=" + filter).then((res) => {
       setBoardData(res.data)
     })
   }
@@ -36,8 +38,11 @@ const Dashboard = () => {
     fetchBoardData()
     fetchBoardUser()
   }, [])
+  useEffect(() => {
+    fetchBoardData()
+  }, [filter])
 
-  console.log(boardData, boardUser, "boardrelated---Info")
+  
   const handleTaskClose = () => {
     setTaskModalOpen(false)
     setSelectedTask(null)
@@ -63,13 +68,13 @@ const Dashboard = () => {
         <button className={styles.filterButton}
           onClick={() => setPopupOpen(true)}
         >
-          This week <img src={downVector} alt="down" /></button>
+          {filter == "today" && "Today"}{filter == "week" && "Week"}{filter == "month" && "Month"}<img src={downVector} alt="down" /></button>
         <Popup isOpen={isPopupOpen} onClose={() => setPopupOpen(false)} mode={"filter"}>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-            <button className={styles.optionButton}>Today</button>
-            <button className={styles.optionButton} >This Week</button>
-            <button className={styles.optionButton} >This Month</button>
+            <button className={styles.optionButton} onClick={() => {setFilter("today");setPopupOpen(false)}}>Today</button>
+            <button className={styles.optionButton} onClick={() => {setFilter("week");setPopupOpen(false)}}>This Week</button>
+            <button className={styles.optionButton} onClick={() => {setFilter("month");setPopupOpen(false)}}>This Month</button>
           </div>
 
         </Popup>

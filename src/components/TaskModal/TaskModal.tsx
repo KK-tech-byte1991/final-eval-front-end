@@ -20,7 +20,7 @@ const TaskModal = ({ mode, fetchBoardData, onHandleClose, selectedTask, boardUse
   const [checkList, setCheckList] = useState([])
 
 
-  console.log(boardUser, "boardUser")
+
 
   useEffect(() => {
     if (selectedTask) {
@@ -93,7 +93,7 @@ const TaskModal = ({ mode, fetchBoardData, onHandleClose, selectedTask, boardUse
 
       let createdBy = JSON.parse(sessionStorage.getItem("userDetails") || "")?.id
       const payload = { toDoName, toDoPriority, endTime, createdBy, assignedTo, checkList, status }
-      console.log("payload", payload)
+      
 
       axiosInstance.post("/todo/create", payload).then(() => {
         toast.success("Task Added Successfully");
