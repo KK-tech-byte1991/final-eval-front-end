@@ -18,6 +18,7 @@ import deleteIcon from "./Delete.svg"
 import redEllipses from "./redEllipse.svg"
 import greenEllipses from "./greenEllipses.svg"
 import blueEllipses from "./blueEllipses.svg"
+import downVector from "./downVector.svg"
 
 export {
     registerArt, emailIcon, lockIcon,
@@ -25,5 +26,5 @@ export {
     codesandbox, layout, settings, logout,
     addPeople, plus, collapse, threeDots, ellipsesHigh,
     arrowDown, arrowUp, deleteIcon,
-    redEllipses, blueEllipses, greenEllipses
+    redEllipses, blueEllipses, greenEllipses,downVector
 }

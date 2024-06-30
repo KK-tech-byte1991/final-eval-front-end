@@ -5,13 +5,13 @@ import axiosInstance from "../../../hooks/axiosInstance"
 import { toast } from "sonner"
 import checkListTitle from "../../../hooks/checkListTitle"
 
-const CheckList = ({ expandAll, checkListData, taskData, fetchBoardData,mode }: any) => {
+const CheckList = ({ expandAll, checkListData, taskData, fetchBoardData, mode }: any) => {
     const [expanded, setExpanded] = useState(false)
 
     useEffect(() => {
         setExpanded(expandAll)
     }, [expandAll])
-   
+
 
     const handleEditStatusCheckList = (index: number, checked: boolean) => {
         let updatedCheckList = JSON.parse(JSON.stringify(checkListData))
@@ -26,15 +26,15 @@ const CheckList = ({ expandAll, checkListData, taskData, fetchBoardData,mode }: 
         })
     }
 
-   
+
 
     return (
         <div className={styles.container}>
             <div className={styles.headerDiv}>
                 {checkListTitle(checkListData)}
                 <button className={styles.expandedButton}
-                    onClick={() => setExpanded(!expanded)}> {expanded ? <img src={arrowDown} /> :
-                        <img src={arrowUp} />}</button>
+                    onClick={() => setExpanded(!expanded)}> {expanded ? <img src={arrowDown} alt="down" /> :
+                        <img src={arrowUp} alt="up" />}</button>
             </div>
 
             {expanded && <div className={styles.taskList}>
@@ -46,11 +46,11 @@ const CheckList = ({ expandAll, checkListData, taskData, fetchBoardData,mode }: 
                             type="checkbox"
                             style={{
                                 accentColor: '#17A2B8',
-                                borderRadius:"20px"
-                              }}
-                            
+                                borderRadius: "20px"
+                            }}
+
                             checked={JSON.parse(task.status)}
-                            onChange={(e) => mode !=="public" && handleEditStatusCheckList(index, e.target.checked)}
+                            onChange={(e) => mode !== "public" && handleEditStatusCheckList(index, e.target.checked)}
                         />
                         <label >{task.title}</label></li>))
                 }

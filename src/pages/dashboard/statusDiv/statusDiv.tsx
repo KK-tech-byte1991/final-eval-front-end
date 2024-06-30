@@ -22,9 +22,7 @@ const StatusDiv = ({ title, toggleTaskModal, data, setMode, mode, fetchBoardData
 
     const handleDrop = (e: any) => {
         const data = JSON.parse(e.dataTransfer.getData("task"))
-        console.log(data, "dropped bomb")
-
-
+        
         data.status = mode;
 
         axiosInstance.put("/todo/edit/" + data?._id, data).then(() => {

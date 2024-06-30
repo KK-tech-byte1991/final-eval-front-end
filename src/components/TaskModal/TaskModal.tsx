@@ -145,7 +145,7 @@ const TaskModal = ({ mode, fetchBoardData, onHandleClose, selectedTask, boardUse
             <label className={styles.title} htmlFor="assgSelect">Assign To</label>
             <select id="assgSelect" className={styles.assignmentSelect} value={assignedTo} onChange={(e) => setAssignedTo(e.target.value)} >
               <option value={undefined}>Select Assigned To</option>
-              {boardUser?.affiliation?.map((user: any) => <option value={user.email}>{user.email}</option>)
+              {boardUser?.affiliation?.map((user: any) => <option key={user.email} value={user.email}>{user.email}</option>)
               }
 
             </select></div>

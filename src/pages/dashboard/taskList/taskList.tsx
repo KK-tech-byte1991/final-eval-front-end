@@ -1,6 +1,6 @@
 
 import styles from "./taskList.module.css"
-import {  threeDots } from '../../../assets'
+import { threeDots } from '../../../assets'
 import CheckList from "../checkList/checkList"
 import dateConverter from "../../../hooks/dateConverter"
 import Popup from "../../../components/Popup/popup"

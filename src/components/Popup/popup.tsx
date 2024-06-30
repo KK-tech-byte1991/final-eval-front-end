@@ -2,13 +2,13 @@
 import styles from './popup.module.css';
 
 
-const Popup = ({ isOpen, onClose, children }:any) => {
+const Popup = ({ isOpen, onClose, children, mode }: any) => {
   if (!isOpen) return null;
 
   return (
     <>
       <div className={styles.overlay} onClick={onClose}></div>
-      <div className={styles.popup}>        
+      <div className={mode == "filter" ? styles.popupFilterMode : styles.popup}>
         {children}
       </div>
     </>
