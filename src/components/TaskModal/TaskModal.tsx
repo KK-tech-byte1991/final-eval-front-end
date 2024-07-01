@@ -11,7 +11,7 @@ import getPriorityEllipses from "../../hooks/getPriorityEllipses"
 
 
 const TaskModal = ({ mode, fetchBoardData, onHandleClose, selectedTask, boardUser }: any) => {
-  // let userDetails = sessionStorage.getItem("userDetails") ? JSON.parse(sessionStorage.getItem("userDetails") ?? "") : null
+  let userDetails = sessionStorage.getItem("userDetails") ? JSON.parse(sessionStorage.getItem("userDetails") ?? "") : null
 
   const [toDoName, setToDoName] = useState("")
   const [toDoPriority, setToDoPriority] = useState("")
@@ -94,7 +94,7 @@ const TaskModal = ({ mode, fetchBoardData, onHandleClose, selectedTask, boardUse
 
       let createdBy = JSON.parse(sessionStorage.getItem("userDetails") || "")?.id
       const payload = { toDoName, toDoPriority, endTime, createdBy, assignedTo, checkList, status }
-      
+
 
       axiosInstance.post("/todo/create", payload).then(() => {
         toast.success("Task Added Successfully");
@@ -142,14 +142,15 @@ const TaskModal = ({ mode, fetchBoardData, onHandleClose, selectedTask, boardUse
 
           </div>
 
-          <div className={styles.priorityDiv}>
+          {((userDetails.id == createdBy) || (!selectedTask)) && <div className={styles.priorityDiv}>
             <label className={styles.title} htmlFor="assgSelect">Assign To</label>
             <select id="assgSelect" className={styles.assignmentSelect} value={assignedTo} onChange={(e) => setAssignedTo(e.target.value)} >
               <option value={undefined}>Select Assigned To</option>
               {boardUser?.affiliation?.map((user: any) => <option key={user.email} value={user.email}>{user.email}</option>)
               }
 
-            </select></div>
+            </select>
+          </div>}
           <div className={styles.priorityDiv}>
             <label className={styles.title}>
               {checkListTitle(checkList)}
@@ -167,12 +168,12 @@ const TaskModal = ({ mode, fetchBoardData, onHandleClose, selectedTask, boardUse
             </button>
 
 
-            <input type="checkbox" 
-             style={{
-              accentColor: '#17A2B8',
-              borderRadius: "20px"
-          }}
-            checked={JSON.parse(check.status)} onChange={(e) => handleEditStatusCheckList(index, e.target.checked)} />
+            <input type="checkbox"
+              style={{
+                accentColor: '#17A2B8',
+                borderRadius: "20px"
+              }}
+              checked={JSON.parse(check.status)} onChange={(e) => handleEditStatusCheckList(index, e.target.checked)} />
             <input type="text" value={check.title}
               onChange={(e) => handleEditTitleCheckList(index, e.target.value)}
               className={styles.addNewCheckListInput} placeholder="Add Task" />
