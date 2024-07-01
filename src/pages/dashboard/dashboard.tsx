@@ -3,7 +3,7 @@ import { addPeople, downVector } from "../../assets"
 import styles from "./dashboard.module.css"
 import Modal from "../../components/Modal/modal"
 import StatusDiv from "./statusDiv/statusDiv"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import TaskModal from "../../components/TaskModal/TaskModal"
 import axiosInstance from "../../hooks/axiosInstance"
 import dateConverter from "../../hooks/dateConverter"
@@ -21,6 +21,7 @@ const Dashboard = () => {
   const [selectedTask, setSelectedTask] = useState<any>(null)
 
   const [filter, setFilter] = useState("week");
+  const prevFilter = useRef("week");
 
   const fetchBoardData = () => {
     axiosInstance.get("/todo/all/user/" + userDetails.id + "?filter=" + filter).then((res) => {
@@ -42,12 +43,17 @@ const Dashboard = () => {
     fetchBoardData()
   }, [filter])
 
-  
+
   const handleTaskClose = () => {
     setTaskModalOpen(false)
     setSelectedTask(null)
   }
   let statusData = [{ title: "Backlog", id: "BACKLOG" }, { title: "To Do", id: "TODO" }, { title: "In Progress", id: "INPROGRESS" }, { title: "Done", id: "DONE" }]
+  const handleprevRef = (prev: string) => {
+
+    prevFilter.current = prev;
+    return "all"
+  }
   return (
     <div className={styles.dashboardOuterDiv}>
       <div className={styles.header}>
@@ -68,13 +74,13 @@ const Dashboard = () => {
         <button className={styles.filterButton}
           onClick={() => setPopupOpen(true)}
         >
-          {filter == "today" && "Today"}{filter == "week" && "Week"}{filter == "month" && "Month"}<img src={downVector} alt="down" /></button>
+          {filter == "today" && "Today"}{filter == "week" && "Week"}{filter == "month" && "Month"} {filter=="all" && prevFilter.current}<img src={downVector} alt="down" /></button>
         <Popup isOpen={isPopupOpen} onClose={() => setPopupOpen(false)} mode={"filter"}>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-            <button className={styles.optionButton} onClick={() => {setFilter("today");setPopupOpen(false)}}>Today</button>
-            <button className={styles.optionButton} onClick={() => {setFilter("week");setPopupOpen(false)}}>This Week</button>
-            <button className={styles.optionButton} onClick={() => {setFilter("month");setPopupOpen(false)}}>This Month</button>
+            <button className={styles.optionButton} onClick={() => { filter == "today" ? setFilter(handleprevRef) : setFilter("today"); setPopupOpen(false) }}>Today</button>
+            <button className={styles.optionButton} onClick={() => { filter == "week" ? setFilter(handleprevRef) : setFilter("week"); setPopupOpen(false) }}>This Week</button>
+            <button className={styles.optionButton} onClick={() => { filter == "month" ? setFilter(handleprevRef) : setFilter("month"); setPopupOpen(false) }}>This Month</button>
           </div>
 
         </Popup>

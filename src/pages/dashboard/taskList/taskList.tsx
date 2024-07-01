@@ -105,7 +105,7 @@ const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any
         </div>
       </div>
 
-      <div className={styles.heroSection} title={taskData.toDoName}>{taskData.toDoName}</div>
+      <div className={styles.heroSection} title={taskData.toDoName.length>20 ?taskData.toDoName:undefined}>{taskData.toDoName}</div>
 
       <CheckList
         expandAll={expandAll}

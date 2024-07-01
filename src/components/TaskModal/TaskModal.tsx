@@ -158,32 +158,35 @@ const TaskModal = ({ mode, fetchBoardData, onHandleClose, selectedTask, boardUse
 
 
 
+          <div className={((userDetails.id == createdBy) || (!selectedTask)) ? styles.checkListConatiner : styles.checkListConatinerWOAssign}>
+            {checkList?.map((check: any, index: number) => <div
+              className={styles.inputContainer}
+              key={index}>
 
-          {checkList?.map((check: any, index: number) => <div
-            className={styles.inputContainer}
-            key={index}>
-
-            <button className={styles.inputAdornment} onClick={() => handleDelete(index)}>
-              <img src={deleteIcon} alt="delete" />
-            </button>
-
-
-            <input type="checkbox"
-              style={{
-                accentColor: '#17A2B8',
-                borderRadius: "20px"
-              }}
-              checked={JSON.parse(check.status)} onChange={(e) => handleEditStatusCheckList(index, e.target.checked)} />
-            <input type="text" value={check.title}
-              onChange={(e) => handleEditTitleCheckList(index, e.target.value)}
-              className={styles.addNewCheckListInput} placeholder="Add Task" />
-          </div>)}
+              <button className={styles.inputAdornment} onClick={() => handleDelete(index)}>
+                <img src={deleteIcon} alt="delete" />
+              </button>
 
 
+              <input
+                className={styles.checkBoxAdornment}
+                type="checkbox"
+                style={{
+                  accentColor: '#17A2B8',
+                  borderRadius: "20px"
+                }}
+                checked={JSON.parse(check.status)}
+                onChange={(e) => handleEditStatusCheckList(index, e.target.checked)} />
+              <input type="text" value={check.title}
+                onChange={(e) => handleEditTitleCheckList(index, e.target.value)}
+                className={styles.addNewCheckListInput} placeholder="Add Task" />
+            </div>)}
 
-          <div className={styles.addNew}>
-            <button onClick={handleAddCheckList} className={styles.addNewButton}>+ Add New</button></div>
 
+
+            <div className={styles.addNew}>
+              <button onClick={handleAddCheckList} className={styles.addNewButton}>+ Add New</button></div>
+          </div>
           <div className={styles.footer}>
             <div className={styles.dateContainer}>
               <input
@@ -191,6 +194,9 @@ const TaskModal = ({ mode, fetchBoardData, onHandleClose, selectedTask, boardUse
                 value={endTime.split("T")[0]}
                 onChange={(e) => { setEndTime(e.target.value) }}
                 className={styles.inputField}
+                pattern="\d{4}/\d{2}/\d{2}"
+                placeholder="YYYY/MM/DD" required
+                aria-label="Date"
               />
 
               {!hasValue && <button className={`${styles.inputPlaceholder} ${styles.dueDateButton} ${hasValue ? styles.hasValue : ''}`}>

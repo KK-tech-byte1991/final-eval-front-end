@@ -26,7 +26,7 @@
 
 .body {
     padding-left: 25px;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-right: 5px;
     
     
