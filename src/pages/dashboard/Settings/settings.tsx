@@ -61,7 +61,7 @@ const Settings = () => {
         <input
           value={oldPassword}
           type='password'
-          placeholder="Confirm Password"
+          placeholder="Old Password"
           onChange={(e) => setOldPassword(e.target.value)}
         />
 
@@ -75,7 +75,7 @@ const Settings = () => {
         <input
           value={password}
           type='password'
-          placeholder="Password"
+          placeholder="New Password"
           onChange={(e) => setPassword(e.target.value)}
         />
 

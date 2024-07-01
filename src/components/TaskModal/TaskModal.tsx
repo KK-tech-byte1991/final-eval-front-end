@@ -11,6 +11,7 @@ import getPriorityEllipses from "../../hooks/getPriorityEllipses"
 
 
 const TaskModal = ({ mode, fetchBoardData, onHandleClose, selectedTask, boardUser }: any) => {
+  // let userDetails = sessionStorage.getItem("userDetails") ? JSON.parse(sessionStorage.getItem("userDetails") ?? "") : null
 
   const [toDoName, setToDoName] = useState("")
   const [toDoPriority, setToDoPriority] = useState("")
@@ -166,7 +167,12 @@ const TaskModal = ({ mode, fetchBoardData, onHandleClose, selectedTask, boardUse
             </button>
 
 
-            <input type="checkbox" checked={JSON.parse(check.status)} onChange={(e) => handleEditStatusCheckList(index, e.target.checked)} />
+            <input type="checkbox" 
+             style={{
+              accentColor: '#17A2B8',
+              borderRadius: "20px"
+          }}
+            checked={JSON.parse(check.status)} onChange={(e) => handleEditStatusCheckList(index, e.target.checked)} />
             <input type="text" value={check.title}
               onChange={(e) => handleEditTitleCheckList(index, e.target.value)}
               className={styles.addNewCheckListInput} placeholder="Add Task" />

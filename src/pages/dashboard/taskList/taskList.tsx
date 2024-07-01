@@ -10,6 +10,7 @@ import axiosInstance from "../../../hooks/axiosInstance"
 import getPriorityEllipses from "../../../hooks/getPriorityEllipses"
 
 const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any) => {
+
   const [isPopupOpen, setPopupOpen] = useState(false);
 
   const openPopup = () => setPopupOpen(true);
@@ -22,14 +23,14 @@ const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any
       case "LOW":
         return "Low Priority";
 
-      case "MEDIUM":
+      case "MODERATE":
         return "Medium Priority";
 
     }
   }
 
   const getDueColor = () => {
-   
+
     if (taskData.status == "DONE") {
       return "green"
     }
@@ -78,6 +79,7 @@ const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any
       draggable={true}
       onDragStart={handleDragStart}
       className={styles.taskBody}>
+
       <div className={styles.topDiv}>
 
         <div className={styles.priorityDiv}>
@@ -85,7 +87,7 @@ const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any
           {/* <div className={styles.initialsDiv}></div> */}
 
           <p className={styles.priorityLabel}> {getPriority(taskData.toDoPriority)}</p>
-          {mode !== "public" && <div className={styles.initialsDiv}>DM</div>}
+          {mode !== "public" && <div className={styles.initialsDiv}>{taskData.assignedTo?.substring(0, 2)?.toUpperCase()}</div>}
         </div>
 
 
