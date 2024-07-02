@@ -26,10 +26,10 @@ const CheckList = ({ expandAll, checkListData, taskData, fetchBoardData, mode }:
         })
     }
 
-
+    console.log("dsdsdsds", mode)
 
     return (
-        <div className={styles.container}>
+        <div className={mode !== "public" ? styles.container : styles.containerPublic}>
             <div className={styles.headerDiv}>
                 {checkListTitle(checkListData)}
                 <button className={styles.expandedButton}
@@ -37,7 +37,7 @@ const CheckList = ({ expandAll, checkListData, taskData, fetchBoardData, mode }:
                         <img src={arrowUp} alt="up" />}</button>
             </div>
 
-            {expanded && <div className={styles.taskList}>
+            {expanded && <div className={mode !== "public" ? styles.taskList : styles.taskListPublic}>
 
                 {checkListData.map((task: any, index: number) => (
                     <li
@@ -48,7 +48,7 @@ const CheckList = ({ expandAll, checkListData, taskData, fetchBoardData, mode }:
                                 accentColor: '#17A2B8',
                                 borderRadius: "20px"
                             }}
-
+                            // disabled={mode == "public"}
                             checked={JSON.parse(task.status)}
                             onChange={(e) => mode !== "public" && handleEditStatusCheckList(index, e.target.checked)}
                         />

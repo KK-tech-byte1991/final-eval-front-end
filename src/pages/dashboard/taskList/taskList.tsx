@@ -78,7 +78,7 @@ const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any
     <div
       draggable={true}
       onDragStart={handleDragStart}
-      className={styles.taskBody}>
+      className={mode !== "public" ? styles.taskBody : styles.taskBodyPublic}>
 
       <div className={styles.topDiv}>
 
@@ -105,7 +105,7 @@ const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any
         </div>
       </div>
 
-      <div className={styles.heroSection} title={taskData.toDoName.length>20 ?taskData.toDoName:undefined}>{taskData.toDoName}</div>
+      <div className={styles.heroSection} title={taskData.toDoName.length > 20 ? taskData.toDoName : undefined}>{taskData.toDoName}</div>
 
       <CheckList
         expandAll={expandAll}
@@ -125,6 +125,7 @@ const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any
 
         {taskData.endTime.length > 0 && <p>Due Date</p>} &nbsp;&nbsp;{taskData.endTime.length > 0 && <button className={styles.taskStatusButton} style={{ backgroundColor: "red", color: "white" }}>{dateConverter(taskData.endTime)}</button>}
       </div>}
+      
     </div>
   )
 }

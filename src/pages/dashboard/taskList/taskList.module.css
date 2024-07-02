@@ -1,11 +1,32 @@
 .taskBody {
     border-radius: 20px;
     background: #FFF;
-    /* min-height: 175px; */
     position: relative;
     padding-bottom: 10px;
     height: fit-content;
     margin-bottom: 10px;
+}
+
+.taskBodyPublic {
+    border-radius: 20px;
+    background: #FFF;
+    position: relative;
+    padding-bottom: 10px;
+    height: calc(100% - 200px);
+    margin-bottom: 10px;
+    width: 100%
+}
+
+@media (max-width: 430px) {
+    .taskBodyPublic {
+        border-radius: 20px;
+        background: #FFF;
+        position: relative;
+        padding-bottom: 10px;
+        height: 100%;
+        margin-bottom: 10px;
+        width: 100%
+    }
 }
 
 .topDiv {
