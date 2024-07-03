@@ -24,11 +24,12 @@
     cursor: pointer;
 }
 
-.body {
+.bodyStatus {
     padding-left: 25px;
     overflow-y: auto;
-    padding-right: 5px;
-    
+    padding-right: 5px;   
     
     height: 90%;
+    scrollbar-width: thin;
+	scrollbar-color: rgba(141, 170, 185, 0.80) transparent;
 }

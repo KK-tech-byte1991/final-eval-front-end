@@ -269,10 +269,14 @@
   overflow-y: auto;
   overflow-x: hidden;
   height: calc(100% - 260px);
+  scrollbar-width: thin;
+	scrollbar-color: rgba(141, 170, 185, 0.80) transparent;
 }
 
 .checkListConatinerWOAssign{
   overflow-y: auto;
   overflow-x: hidden;
   height: calc(100% - 220px);
+  scrollbar-width: thin;
+	scrollbar-color: rgba(141, 170, 185, 0.80) transparent;
 }
