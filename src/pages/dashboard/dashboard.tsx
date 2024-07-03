@@ -8,9 +8,11 @@ import TaskModal from "../../components/TaskModal/TaskModal"
 import axiosInstance from "../../hooks/axiosInstance"
 import dateConverter from "../../hooks/dateConverter"
 import Popup from "../../components/Popup/popup"
+import EmailNotify from "../../components/emailNotify/emailNotify"
 const Dashboard = () => {
   let userDetails = sessionStorage.getItem("userDetails") ? JSON.parse(sessionStorage.getItem("userDetails") ?? "") : null
 
+  const [emailNotifyOpen, setEmailNotifyOpen] = useState<string | null>(null)
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [assignOpen, setAssignOpen] = useState(false)
   const [taskModalOpen, setTaskModalOpen] = useState(false)
@@ -67,14 +69,14 @@ const Dashboard = () => {
         <h2 className={styles.heading}>Board &nbsp;</h2>
 
         <div className={styles.addPeople}>
-          <button onClick={() => setAssignOpen(true)}>
+          <button onClick={() => { setAssignOpen(true);  }}>
             <img src={addPeople} alt="altpeople" /> &nbsp;Add People</button>
         </div>
 
         <button className={styles.filterButton}
           onClick={() => setPopupOpen(true)}
         >
-          {filter == "today" && "Today"}{filter == "week" && "Week"}{filter == "month" && "Month"} {filter=="all" && prevFilter.current}<img src={downVector} alt="down" /></button>
+          {filter == "today" && "Today"}{filter == "week" && "Week"}{filter == "month" && "Month"} {filter == "all" && prevFilter.current}<img src={downVector} alt="down" /></button>
         <Popup isOpen={isPopupOpen} onClose={() => setPopupOpen(false)} mode={"filter"}>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
@@ -109,8 +111,14 @@ const Dashboard = () => {
         //@ts-ignore
         boardId={boardUser?._id}
         fetchBoardUser={fetchBoardUser}
+        setEmailNotifyOpen={setEmailNotifyOpen}
 
       ></Modal>}
+
+      {emailNotifyOpen && <EmailNotify
+        emailNotifyOpen={emailNotifyOpen}
+        setEmailNotifyOpen={setEmailNotifyOpen}
+      />}
 
       {taskModalOpen && <TaskModal
         mode={mode}
@@ -120,6 +128,7 @@ const Dashboard = () => {
         boardUser={boardUser}
 
       />}
+
     </div>
   )
 }

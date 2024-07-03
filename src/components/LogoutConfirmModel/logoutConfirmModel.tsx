@@ -21,17 +21,17 @@ const LogoutConfirmModel = (props: any) => {
                 <br />
                 <div className={styles.buttonDiv}>
                     <button
-                        onClick={() => props.handleClose(false)}
-                        className={styles.cancelButton}>Cancel</button>
-                    <button
                         onClick={() => {
                             sessionStorage.clear();
                             navigate("/")
                         }
-
                         }
 
-                        className={styles.submitButton}>Submit</button>
+                        className={styles.submitButton}>Yes,Logout</button>
+                    <button
+                        onClick={() => props.handleClose(false)}
+                        className={styles.cancelButton}>Cancel</button>
+
                 </div>
 
             </form>

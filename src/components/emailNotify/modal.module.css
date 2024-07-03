@@ -25,7 +25,7 @@
   padding: 20px;
   padding-top: 55px;
   padding-bottom: 44px;
-
+  text-align: center;
 }
 
 
@@ -66,7 +66,7 @@
   height: 45px;
   border: none;
   display: flex;
-  width: 45%;
+  width: 70%;
   padding: 17px 4px;
   justify-content: center;
   align-items: center;
@@ -75,34 +75,16 @@
   background: #17A2B8;
   box-shadow: 0px 2px 12px 0px rgba(130, 105, 140, 0.20);
   cursor: pointer;
-
   font-family: Poppins;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: 19px;
-  color: #fff
+  color:#fff
+
 }
 
-.cancelButton {
 
-  background: #FFF;
-  width: 45%;
-  height: 45px;
-  flex-shrink: 0;
-  cursor: pointer;
-  border-radius: 12px;
-  border: 1px solid #CF3636;
-  color: #CF3636;
-  text-align: center;
-
-  font-family: Poppins;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 19px;
-  /* 118.75% */
-}
 
 .heading {
   color: #000;
@@ -115,6 +97,12 @@
 
 .buttonDiv {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  color: #FFF;
+  text-align: center;
+
+
+  /* 118.75% */
+
 
 }

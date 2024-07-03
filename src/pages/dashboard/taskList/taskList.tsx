@@ -9,11 +9,12 @@ import { toast } from "sonner"
 import axiosInstance from "../../../hooks/axiosInstance"
 import getPriorityEllipses from "../../../hooks/getPriorityEllipses"
 import "./toast.css"
+import DeleteConfirmModel from "../../../components/DeleteConfirmModel/deleteConfirmModel"
 
 const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any) => {
 
   const [isPopupOpen, setPopupOpen] = useState(false);
-
+  const [deleteOpen, setDeleteOpen] = useState(false)
   const openPopup = () => setPopupOpen(true);
   const closePopup = () => setPopupOpen(false);
   const getPriority = (priority: string) => {
@@ -63,9 +64,10 @@ const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any
 
   const handleDelete = (id: string) => {
     axiosInstance.delete("/todo/delete/" + id)
-      .then(() => fetchBoardData())
-
+      .then(() => { fetchBoardData() })
+    setDeleteOpen(true)
     closePopup()
+
   }
   const handleStatusChange = (status: string) => {
     let taskDataUpdated = JSON.parse(JSON.stringify(taskData))
@@ -109,12 +111,15 @@ const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any
             <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
               <button className={styles.optionButton} onClick={() => { handleEdit(taskData); closePopup() }}>Edit</button>
               <button className={styles.optionButton} onClick={() => copyToClipboard(window.location.origin + "/task/" + taskData._id)}>Share</button>
-              <button className={styles.optionButton} onClick={() => handleDelete(taskData._id)}>Delete</button>
+              <button className={styles.optionButtonDelete} onClick={() => setDeleteOpen(true)}>Delete</button>
             </div>
           </Popup>
         </div>
       </div>
-
+      {deleteOpen && <DeleteConfirmModel
+        handleDelete={() => handleDelete(taskData._id)}
+        handleClose={() => setDeleteOpen(false)}
+      />}
       <div className={styles.heroSection} title={taskData.toDoName.length > 20 ? taskData.toDoName : undefined}>{taskData.toDoName}</div>
 
       <CheckList

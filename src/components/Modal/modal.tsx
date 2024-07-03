@@ -5,6 +5,7 @@ import axiosInstance from "../../hooks/axiosInstance";
 import { toast } from "sonner";
 import validateEmail from "../../hooks/validateEmail";
 
+
 const Modal = (props: any) => {
   const [emailId, setEmailId] = useState("");
 
@@ -18,10 +19,11 @@ const Modal = (props: any) => {
 
       axiosInstance.post("/board/" + props.boardId, payload)
         .then((res) => {
+          props.setEmailNotifyOpen(emailId)
           props.fetchBoardUser();
           props.onHandleCancel(false)
           toast.success(res.data)
-          
+
 
         })
 

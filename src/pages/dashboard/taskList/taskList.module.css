@@ -161,4 +161,18 @@
     font-weight: 600;
     line-height: normal;
 }
+.optionButtonDelete{
+    background-color: white;
+    border: none;
+    color: #CF3636;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: left;
+    margin-top: 6px;
+    cursor: pointer;
+}
 
