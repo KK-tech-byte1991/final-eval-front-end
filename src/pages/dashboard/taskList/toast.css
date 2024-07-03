@@ -1,0 +1,8 @@
+.linkCopyToast {
+    border-radius: 12px;
+    border: 1px solid var(--Light-Sucess-border, #48C1B5);
+    background: var(--Light-Sucess-background, #F6FFF9);
+
+   
+    box-shadow: 0px 4px 16px 0px rgba(16, 11, 39, 0.08);
+}

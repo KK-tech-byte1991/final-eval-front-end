@@ -8,6 +8,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 import axiosInstance from "../../../hooks/axiosInstance"
 import getPriorityEllipses from "../../../hooks/getPriorityEllipses"
+import "./toast.css"
 
 const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any) => {
 
@@ -43,7 +44,16 @@ const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
       .then(() => {
-        toast.success('Link copied to clipboard');
+        toast.success('Link Copied', {
+          style: {
+            borderRadius: '12px',
+            border: '1px solid var(--Light-Sucess-border, #48C1B5)',
+            background: 'var(--Light-Sucess-background, #F6FFF9)',
+            boxShadow: '0px 4px 16px 0px rgba(16, 11, 39, 0.08)',
+            width: "200px"
+          }
+
+        });
       })
       .catch(err => {
         console.error('Failed to copy text: ', err);
@@ -125,7 +135,7 @@ const TaskList = ({ expandAll, taskData, fetchBoardData, handleEdit, mode }: any
 
         {taskData.endTime.length > 0 && <p>Due Date</p>} &nbsp;&nbsp;{taskData.endTime.length > 0 && <button className={styles.taskStatusButton} style={{ backgroundColor: "red", color: "white" }}>{dateConverter(taskData.endTime)}</button>}
       </div>}
-      
+
     </div>
   )
 }
